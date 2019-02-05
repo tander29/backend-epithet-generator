@@ -1,6 +1,7 @@
 from sprint_b.helpers import FileManager as fm
 from sprint_b.helpers import Vocabulary as Vocab
 from sprint_b.helpers import EpithetGenerator as epgen
+import json
 from pathlib import PurePath as Path
 import os
 p = Path(os.getcwd())
@@ -54,5 +55,6 @@ def test_epithet_random():
 
 def test_epithet_multiple():
     quantity = 2
-    assert type(epgen.multiple_epithets(json_path, quantity)) == dict
-    assert len(epgen.multiple_epithets(json_path, quantity)) == quantity
+    assert type(epgen.multiple_epithets(json_path, quantity)) == str
+    assert len(json.loads(epgen.multiple_epithets(
+        json_path, quantity))) == quantity
