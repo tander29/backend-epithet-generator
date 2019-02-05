@@ -62,7 +62,9 @@ class EpithetGenerator:
         return epithet
 
     @classmethod
-    def multiple_epithets(cls, path1):
-        """Returns all columns with vocab"""
-        all_vocab = cls.vocab.from_file(path1)[0]
-        return all_vocab
+    def multiple_epithets(cls, path, quantity):
+        """Returns defined number of insults"""
+        epithets = {}
+        for i in range(quantity):
+            epithets[i+1] = cls.single_rand_epithet(path)
+        return epithets

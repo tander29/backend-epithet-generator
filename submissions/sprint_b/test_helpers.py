@@ -52,7 +52,7 @@ def test_epithet_random():
     assert len(words) == 3
 
 
-def test_epithet_vocab():
-    words = epgen.multiple_epithets(json_path)
-    assert type(words) == dict
-    assert len(words.keys()) == 3
+def test_epithet_multiple():
+    quantity = 2
+    assert type(epgen.multiple_epithets(json_path, quantity)) == dict
+    assert len(epgen.multiple_epithets(json_path, quantity)) == quantity
