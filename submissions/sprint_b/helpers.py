@@ -67,4 +67,4 @@ class EpithetGenerator:
         epithets = {}
         for i in range(quantity):
             epithets[i+1] = cls.single_rand_epithet(path)
-        return json.dumps(epithets)
+        return epithets

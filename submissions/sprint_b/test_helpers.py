@@ -1,7 +1,6 @@
-from sprint_b.helpers import FileManager as fm
+from sprint_b.helpers import FileManager as Fm
 from sprint_b.helpers import Vocabulary as Vocab
-from sprint_b.helpers import EpithetGenerator as epgen
-import json
+from sprint_b.helpers import EpithetGenerator as Epgen
 from pathlib import PurePath as Path
 import os
 p = Path(os.getcwd())
@@ -15,13 +14,13 @@ def test_fm_get_extension():
     path = 'thisstuff.txt'
     path2 = 'thisstuff.json'
     path3 = 'thisstuff.csv'
-    assert fm.get_extension(path) == 'txt'
-    assert fm.get_extension(path2) == 'json'
-    assert fm.get_extension(path3) == 'csv'
+    assert Fm.get_extension(path) == 'txt'
+    assert Fm.get_extension(path2) == 'json'
+    assert Fm.get_extension(path3) == 'csv'
 
 
 def test_fm_read_json():
-    returned_json = fm.read_json(json_path)
+    returned_json = Fm.read_json(json_path)
     print(type(returned_json))
     assert type(returned_json) == dict
     assert len(returned_json.keys()) == 3
@@ -48,13 +47,13 @@ def test_vocab_strategies():
 
 
 def test_epithet_random():
-    words = epgen.single_rand_epithet(json_path)
+    words = Epgen.single_rand_epithet(json_path)
     assert type(words) == list
     assert len(words) == 3
 
 
 def test_epithet_multiple():
     quantity = 2
-    assert type(epgen.multiple_epithets(json_path, quantity)) == str
-    assert len(json.loads(epgen.multiple_epithets(
-        json_path, quantity))) == quantity
+    assert type(Epgen.multiple_epithets(json_path, quantity)) == dict
+    assert len(Epgen.multiple_epithets(
+        json_path, quantity)) == quantity
