@@ -1,11 +1,10 @@
-from sprint_b import app
-from sprint_b.helpers import EpithetGenerator as Epgen
-from sprint_b.helpers import Vocabulary as Vocab
+from sprint_c import app
+from sprint_c.helpers import EpithetGenerator as Epgen
+from sprint_c.helpers import Vocabulary as Vocab
+from random import randint
 import flask
 import os
 
-"""Root path changes for running debugger locally
-and using flask"""
 try:
     ROOT_PATH = os.environ["EPITHET_ROOT"]
 except KeyError:
@@ -15,8 +14,11 @@ json_path = resourse_path + 'data.json'
 
 
 @app.route('/')
+@app.route('/random')
 @app.route('/<int:quantity>')
-def generate_epithet(quantity=1):
+def generate_epithet(quantity=1, random=None):
+    if flask.request.path == '/random':
+        quantity = randint(1, 10)
     return flask.jsonify(Epgen.multiple_epithets(json_path, quantity))
 
 
